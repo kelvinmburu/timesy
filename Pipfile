@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+flask-sqlalchemy = "*"
+gunicorn = "*"
+flask-login = "*"
+flask-uploads = "*"
+werkzeug = "==0.16.0"
+markupsafe = "==2.0.1"
+flask-mail = "*"
+flask-migrate = "==2.7.0"
+flask-wtf = "*"
+wtforms = {extras = ["email"], version = "*"}
+flask-script = "*"
+flask-bootstrap = "*"
+flask-dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
