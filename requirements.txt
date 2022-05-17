@@ -3,7 +3,6 @@
 # To regenerate from the project's Pipfile, run:
 #
 #    pipenv lock --requirements
-#
 
 -i https://pypi.org/simple
 alembic==1.7.7; python_version >= '3.6'
