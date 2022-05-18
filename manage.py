@@ -1,6 +1,11 @@
-from flask import Flask, render_template,url_for
+from flask import Flask, render_template, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+#database instance
+db = SQLAlchemy(app)
+#connects app file to our database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////database.db'
 
 @app.route("/")
 def hello_world():
