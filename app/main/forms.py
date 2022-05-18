@@ -4,5 +4,5 @@ from wtforms.validators import InputRequired
 
 class TaskForm(FlaskForm):
 
-    task = TextAreaField('Blog review', validators=[InputRequired()])
+    task = TextAreaField(label='',validators=[InputRequired()], render_kw={"placeholder": "Add Task"})
     submit = SubmitField('Submit')

@@ -15,7 +15,7 @@ def tasks():
   if form.validate_on_submit():
     task = form.task.data
 
-  new_task_object = Task(task=task,user_id=user_id)
+    new_task_object = Task(task=task,user_id=user_id)
 
   quote = get_quote()
   return render_template('tasks.html',quote=quote, form=form)
