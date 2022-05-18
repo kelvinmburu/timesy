@@ -1,17 +1,28 @@
-from flask import Flask, render_template,url_for
+import os
+from app import create_app,db
+from flask_script import Manager,Server
+from app.models import *
+from  flask_migrate import Migrate, MigrateCommand
 
-app = Flask(__name__)
+# Creating app instance
+app = create_app('production')
 
-@app.route("/")
-def hello_world():
+manager = Manager(app)
+manager.add_command('server',Server)
 
-    return render_template('home.html')
+migrate = Migrate(app,db)
+manager.add_command('db',MigrateCommand)
 
+@manager.command
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
-    
+@manager.shell
+def make_shell_context():
+    return dict(app = app,db = db,User = User)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manager.run()
