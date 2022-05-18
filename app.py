@@ -4,5 +4,5 @@ app = Flask(__name__)
 def home():
     return "Hello from timesy!"
 
-    if__name__ =='__main__':
+    if__name__ =='__main__'
     app.run(debug=True)
