@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card card_quote ">
+  <div class="card-header">
+    <h6>Motivation</h6>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{quote.q}}</p>
+      <footer class="blockquote-footer text-end">Author: <cite title="Quote Author">{{quote.a}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+{% endblock %}

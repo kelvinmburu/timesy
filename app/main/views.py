@@ -7,8 +7,8 @@ def tasks():
   '''
   view tasks page that displays the users tasks
   '''
-
-  return render_template('tasks.html')
+  quote = get_quote()
+  return render_template('tasks.html',quote=quote)
 
 @main.route('/tasks/add')
 def tasks():
