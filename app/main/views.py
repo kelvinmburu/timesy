@@ -11,25 +11,25 @@ def tasks():
   return render_template('tasks.html',quote=quote)
 
 @main.route('/tasks/add')
-def tasks():
+def add_tasks():
   '''
   view tasks page that allows a user to add tasks
   '''
 
- return render_template('tasks.html')
+  return render_template('tasks.html')
 
 @main.route('/tasks/reminder')
-def tasks():
+def add_reminder():
   '''
   view tasks page that allows a user to add a reminder
   '''
 
- return render_template('tasks.html')
+  return render_template('tasks.html')
 
 @main.route('/tasks/reminder/send')
-def tasks():
+def send_reminder():
   '''
   view tasks page that allows a user to send reminders
   '''
 
- return render_template('tasks.html')
+  return render_template('tasks.html')
