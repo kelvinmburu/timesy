@@ -1,5 +1,6 @@
 from flask import render_template
 from . import main
+from ..requests import get_quote
 
 #views
 @main.route('/tasks')
