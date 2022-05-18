@@ -27,7 +27,7 @@ class User(UserMixin,db.Model):
     
     
 # Task Class
-class task(db.Model):
+class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key = True)
     task = db.Column(db.String(500), nullable = True)
@@ -38,7 +38,7 @@ class task(db.Model):
 
     def save_task(self):
         db.session.add(self)
-        db.session.commit
+        db.session.commit()
 
     def delete_task(self):
         db.session.delete(self)
