@@ -26,4 +26,23 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
     
     
-# Other classes here
+# Task Class
+class task(db.Model):
+    __tablename__ = 'tasks'
+    id = db.Column(db.Integer, primary_key = True)
+    task = db.Column(db.String(500), nullable = True)
+
+    reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    time = db.Column(dbDateTime, default = datetime.utcnow)
+
+    def save_task(self):
+        db.session.add(self)
+        db.session.commit
+
+    def delete_task(self):
+        db.session.delete(self)
+        db.session.commit()
+    
+    def __repr__(self):
+        return f'blog {self.task}'
