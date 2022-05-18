@@ -20,4 +20,32 @@
   </div>
 </div>
 
+{% if tasks %}
+<h1 class="text-capitalize text-center">To do ...</h3>
+<div class="container-fluid text-center">
+  <div class="card-columns row d-flex justify-content-center">
+  {% for task in tasks %}
+    <div class="card col-2">
+      <h1>Hey</h1>
+      <h4 class="card-title">{{task.taskitem}}</h4>
+      <div class="card-body">
+        <h5 class="card-title">{{task.taskitem}}</h5>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Task date:{{task.time}}</small>
+        <br>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<br>
+	{% else %}
+	  <div class="card w-90 mb-3">
+			<div class="card-body">				
+				<p class="card-title">No tasks have been posted yet</p>
+			</div>
+		</div>
+  {% endif %}
+
 {% endblock %}

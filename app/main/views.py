@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template,redirect,url_for
 from . import main
 from ..requests import get_quote
 from .forms import *
@@ -6,16 +6,19 @@ from .. import db
 from ..models import *
 
 #views
-@main.route('/tasks')
+@main.route('/tasks', methods = ['POST','GET'])
 def tasks():
   '''
   view tasks page that displays the users tasks
   '''
   form = TaskForm()
   if form.validate_on_submit():
-    task = form.task.data
+    taskitem = form.task.data
 
-    new_task_object = Task(task=task,user_id=user_id)
+    new_task_object = Task(taskitem=taskitem)
+    new_task_object.save_task()
+
+    return redirect(url_for('main.tasks'))
 
   quote = get_quote()
   return render_template('tasks.html',quote=quote, form=form)
