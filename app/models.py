@@ -16,11 +16,11 @@ class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
-    # role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_secure = db.Column(db.String(255))
-    
+    secure_password = db.Column(db.String(255),nullable = False)
+
     tasks = db.relationship('Task', backref='user', lazy='dynamic')
     reminders = db.relationship('Reminder',backref = 'user',lazy = "dynamic")
 
@@ -48,9 +48,6 @@ class User(db.Model,UserMixin):
     def __repr__(self):
         return f'User {self.username}'
     
-    def __repr__(self):
-        return f'User {self.username}'
-    
     
 
 # Other classes here
@@ -64,12 +61,6 @@ class Task(db.Model):
     reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     time = db.Column(db.DateTime, default = datetime.utcnow)
-    task = db.Column(db.String(500), nullable = True)
-
-    reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    time = db.Column(db.DateTime, default = datetime.utcnow)
-
 
     def save_task(self):
         db.session.add(self)
@@ -85,7 +76,7 @@ class Task(db.Model):
         return task
     
     def __repr__(self):
-        return f'blog {self.task}'
+        return f'task {self.taskitem}'
 
 class Reminder(db.Model):
     __tablename__ = 'reminders'
@@ -110,20 +101,17 @@ class Reminder(db.Model):
     def __repr__(self):
         return f'reminder:{self.reminder}'
 
-# class Role(db.Model):
-#     """
-#     Create a Role table
-#     """
+class Role(db.Model):
+    """
+    Create a Role table
+    """
 
-#     __tablename__ = 'roles'
+    __tablename__ = 'roles'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(60), unique=True)
-#     description = db.Column(db.String(200))
-#     user = db.relationship('User', backref='role',lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(60), unique=True)
+    description = db.Column(db.String(200))
+    user = db.relationship('User', backref='role',lazy='dynamic')
 
-#     def __repr__(self):
-#         return '<Role: {}>'.format(self.name)
-    
     def __repr__(self):
-        return f'blog {self.task}'
+        return '<Role: {}>'.format(self.name)
