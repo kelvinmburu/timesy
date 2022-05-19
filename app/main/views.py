@@ -9,14 +9,6 @@ from .forms import *
 from app.requests import get_quote
 
 #views
-@main.route('/')
-def index():
-  '''
-    View root page function that returns the index page and its data
-  '''
-
-  return render_template('index.html')
-
 @main.route('/tasks', methods = ['POST','GET'])
 def tasks():
   '''
