@@ -4,50 +4,45 @@
     font-family: 'Lato', sans-serif;
 }
 
-.content-section {
-        background: #ffffff;
-        padding: 10px 20px;
-        border: 1px solid #252525;
-        border-radius: 3px;
-        margin-bottom: 20px;
-}
 
 body {
-    width: 100%;
     height: auto;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/note-bg.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/note-bg.jpg');
     background-size: cover;
 }
 
+.nav {
+    background-color: rgba(242, 125, 66, 0.8) !important;
+}
+
+.side1 {
+    margin-left: 2% !important;
+}
+
+.side2 {
+    margin-left: 40% !important;
+}
+
+
 .main-content {
-    margin-top: 180px !important;
-    border-radius: 51.25rem!important;
+    margin-top: 190px !important;
+    border-radius: 51.25rem !important;
+    background-color: #f27d42 !important;
 }
 
-/* Footer Section Styling */
-  
-
-/* Media Queries */
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .article-page-img {
-        width: 100%;
-    }
+.card1 {
+    background-color: #c8eff9 !important;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .article-page-img {
-        width: 60%;
-    }
+.card2 {
+    background-color: rgb(255, 255, 136)!important;
+    margin: 10px !important;
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+.fa {
+    margin-left: 10px !important;
+}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+.title {
+    font-weight: 700;
+}

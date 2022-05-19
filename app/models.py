@@ -56,7 +56,7 @@ class User(db.Model,UserMixin):
 class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key = True)
-    taskitem = db.Column(db.String(500), nullable = True)
+    task = db.Column(db.String(500), nullable = True)
 
     reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -76,7 +76,7 @@ class Task(db.Model):
         return task
     
     def __repr__(self):
-        return f'task {self.taskitem}'
+        return f'task {self.task}'
 
 class Reminder(db.Model):
     __tablename__ = 'reminders'

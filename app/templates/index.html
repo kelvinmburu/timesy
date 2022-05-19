@@ -1,16 +1,11 @@
 {% extends "base.html"%}
 
-{% block styles %}
-{{super()}}
-<link rel="stylesheet" href="{{url_for('static', filename='app/static/css/style.css')}}">
-{% endblock %}
-
 {% block content %}
 <div class="container shadow-lg p-3 mb-6 bg-body rounded main-content">
     <div class="starter-template">
         <div class="text-body text-center">
-            <h1 class="text-dark">Timesy</h1>
-            <p class="lead text-dark">Timesy is a is a Flask application that acts as a to-do app where a user can create and share
+            <h1 class="text-dark title">Timesy</h1>
+            <p class="lead text-dark">Timesy is a Flask application that acts as a to-do app where a user can create and share
                 their tasks<br>and receive reminders when tasks are due.</p>
         </div>
     </div>

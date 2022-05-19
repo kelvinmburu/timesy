@@ -1,19 +1,21 @@
 {% extends "bootstrap/base.html" %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg bg-info text-dark">
+<nav class="navbar navbar-expand-lg bg-info text-dark nav">
     <div class="container-fluid">
-        <a class=" side1 navbar-brand" href="{{url_for('main.index')}}">
+        <a class=" side1 navbar-brand text-white" href="{{url_for('main.index')}}">
             Timesy
         </a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto">
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('main.tasks')}}">All tasks</a>
+                    <a class="nav-link text-white" href="{{url_for('main.tasks')}}">Tasks</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('main.user')}}">Account</a>
+                    <a class="nav-link text-white" href="{{url_for('main.user')}}">Account</a>
                 </li>
             </ul>
             <div class="side2 navbar-nav ml-auto">
@@ -24,16 +26,16 @@
                 </div>
 
                 <div class="nav-item">
-                    <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log
+                    <a class="nav-link text-white" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log
                         out</a>
                 </div>
                 {% else %}
                 <li class="nav-item float-end">
-                    <a class="nav-link" href="{{url_for('auth.login')}}" style="margin-right:30px"><i
+                    <a class="nav-link text-white" href="{{url_for('auth.login')}}" style="margin-right:30px"><i
                             class="fas fa-sign-in-alt"></i>&nbsp;Log In</a>
                 </li>
                 <li class="nav-item float-end">
-                    <a style="margin-right:30px" class="nav-link" href="{{url_for('auth.register')}}"><i
+                    <a style="margin-right:30px" class="nav-link text-white" href="{{url_for('auth.register')}}"><i
                             class="fas fa-user-plus"></i>&nbsp; <strong>Sign Up</strong></a>
                 </li>
                 {%endif%}
