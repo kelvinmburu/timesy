@@ -68,7 +68,7 @@ class Task(db.Model):
 
     reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    time = db.Column(dbDateTime, default = datetime.utcnow)
+    time = db.Column(db.DateTime, default = datetime.utcnow)
 
 
     def save_task(self):
