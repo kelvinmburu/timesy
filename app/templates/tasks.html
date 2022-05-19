@@ -4,8 +4,8 @@
 {% block content %}
 <div class="col-md-6" id="taskform">
   <br><br>
-  <h2 class="text-center">Add Task!</h2>
-  {{wtf.quick_form(form, button_map={'submit':'outline-warning'})}}
+  <h2 class="text-center text-light">Add Task!</h2>
+  {{wtf.quick_form(form, button_map={'submit':'btn btn-warning'})}}
 </div>
 
 <div class="card card_quote ">
@@ -24,8 +24,8 @@
 <h3 class="text-capitalize text-center"> Items Due</h3>
 <div class="container-fluid text-center">
   <div class="card-columns row d-flex justify-content-center">
-  {% for task in tasks %}
-    <div class="card col-2">
+    {% for task in tasks %}
+    <div class="card col-4">
       <h6 class="card-title">{{task.id}}</h6>
       <div class="card-body">
         <h5 class="card-text">{{task.taskitem}}</h5>
@@ -34,22 +34,24 @@
         <small class="text-muted">Task date:{{task.time.strftime('%d-%m-%Y')}}</small>
         <small class="text-muted">Task due date:</small>
         <br>
-        <a href="{{url_for('main.reminders',task_id = task.id)}}"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
-				<a href="{{url_for('main.update_task',task_id = task.id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-				<a href="{{url_for('main.delete_task',task_id = task.id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-				
+        <a href="{{url_for('main.reminders',task_id = task.id)}}"><i class="fa fa-comments-o"
+            aria-hidden="true"></i></a>
+        <a href="{{url_for('main.update_task',task_id = task.id)}}"><i class="fa fa-pencil-square-o"
+            aria-hidden="true"></i></a>
+        <a href="{{url_for('main.delete_task',task_id = task.id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
       </div>
     </div>
     {% endfor %}
   </div>
 </div>
 <br>
-	{% else %}
-	  <div class="card w-90 mb-3">
-			<div class="card-body">				
-				<p class="card-title">No tasks have been posted yet</p>
-			</div>
-		</div>
-  {% endif %}
+{% else %}
+<div class="card w-90 mb-3">
+  <div class="card-body">
+    <p class="card-title">No tasks have been posted yet</p>
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -1,26 +1,44 @@
 {% extends "bootstrap/base.html" %}
 
 {% block content %}
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href=" {{url_for('main.index')}} ">Timesy</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+<nav class="navbar navbar-expand-lg bg-info text-dark">
+    <div class="container-fluid">
+        <a class=" side1 navbar-brand" href="{{url_for('main.index')}}">
+            Timesy
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main.tasks')}}">All tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main.user')}}">Account</a>
+                </li>
             </ul>
+            <div class="side2 navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+
+                <div class="nav-item">
+                    <a class="nav-link"><i class="fas fa-user"></i>&nbsp;<strong>{{current_user.username}}</strong></a>
+                </div>
+
+                <div class="nav-item">
+                    <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log
+                        out</a>
+                </div>
+                {% else %}
+                <li class="nav-item float-end">
+                    <a class="nav-link" href="{{url_for('auth.login')}}" style="margin-right:30px"><i
+                            class="fas fa-sign-in-alt"></i>&nbsp;Log In</a>
+                </li>
+                <li class="nav-item float-end">
+                    <a style="margin-right:30px" class="nav-link" href="{{url_for('auth.register')}}"><i
+                            class="fas fa-user-plus"></i>&nbsp; <strong>Sign Up</strong></a>
+                </li>
+                {%endif%}
+            </div>
         </div>
-        <!--/.nav-collapse -->
     </div>
 </nav>
 {% endblock %}
