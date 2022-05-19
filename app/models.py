@@ -52,7 +52,9 @@ class User(db.Model,UserMixin):
         return f'User {self.username}'
     
     
+
 # Other classes here
+
 # Task Class
 class Task(db.Model):
     __tablename__ = 'tasks'
@@ -62,6 +64,12 @@ class Task(db.Model):
     reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     time = db.Column(db.DateTime, default = datetime.utcnow)
+    task = db.Column(db.String(500), nullable = True)
+
+    reminder = db.relationship('Reminder',backref='task',lazy='dynamic')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    time = db.Column(dbDateTime, default = datetime.utcnow)
+
 
     def save_task(self):
         db.session.add(self)
@@ -116,3 +124,6 @@ class Reminder(db.Model):
 
 #     def __repr__(self):
 #         return '<Role: {}>'.format(self.name)
+    
+    def __repr__(self):
+        return f'blog {self.task}'
