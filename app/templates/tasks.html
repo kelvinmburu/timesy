@@ -32,7 +32,12 @@
       </div>
       <div class="card-footer">
         <small class="text-muted">Task date:{{task.time.strftime('%d-%m-%Y')}}</small>
+        <small class="text-muted">Task due date:</small>
         <br>
+        <a href="{{url_for('main.reminder',task_id = task.id)}}"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+				<a href="{{url_for('main.tasks',task_id = task.id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+				<a href="{{url_for('main.tasks',task_id = task.id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				
       </div>
     </div>
     {% endfor %}
