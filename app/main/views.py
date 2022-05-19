@@ -23,6 +23,7 @@ def tasks():
   view tasks page that displays the users tasks
   '''
   tasks = Task.query.order_by(Task.time.desc())
+  quote = get_quote()
   form = TaskForm()
 
   if form.validate_on_submit():
@@ -34,36 +35,14 @@ def tasks():
 
     return redirect(url_for('main.tasks'))
 
-  quote = get_quote()
   return render_template('tasks.html',quote=quote, form=form, tasks=tasks)
 
-
-@main.route('/tasks', methods = ['POST','GET'])
-def tasks():
-  '''
-  view tasks page that displays the users tasks
-  '''
-  tasks = Task.query.order_by(Task.time.desc())
-  form = TaskForm()
-
-  if form.validate_on_submit():
-    taskitem = form.task.data
-    user_id = current_user._get_current_object().id
-
-    new_task_object = Task(taskitem=taskitem,user_id=user_id)
-    new_task_object.save_task()
-
-    return redirect(url_for('main.tasks'))
-
-  quote = get_quote()
-  return render_template('tasks.html',quote=quote, form=form, tasks=tasks)
 
 @main.route('/tasks/<task_id>/delete', methods = ['GET','POST'])
 @login_required
 def delete_task(task_id):
-    task = task.query.get(task_id)
-    if task.user != current_user:
-        abort(403)
+    task = Task.query.get(task_id)
+    print(task)
     db.session.delete(task)
     db.session.commit()
 
@@ -72,8 +51,8 @@ def delete_task(task_id):
 
 @main.route('/tasks/<task_id>/update', methods = ['GET','POST'])
 @login_required
-def updatetask(task_id):
-    task = task.query.get(task_id)
+def update_task(task_id):
+    task = Task.query.get(task_id)
     if task.user != current_user:
         abort(403)
     form = taskForm()
@@ -90,3 +69,9 @@ def updatetask(task_id):
         form.description.data = task.description
         form.task.data = task.task
     return render_template('tasks.html', form = form)
+
+@main.route('/tasks/<task_id>/reminders', methods = ['POST','GET'])
+def reminders():
+
+  return redirect(url_for('main.tasks'))
+

@@ -73,7 +73,7 @@ class Task(db.Model):
         return task
     
     def __repr__(self):
-        return f'blog {self.task}'
+        return f'task {self.taskitem}'
 
 class Reminder(db.Model):
     __tablename__ = 'reminders'
