@@ -20,6 +20,8 @@ python-dotenv = "*"
 werkzeug = "==0.16.0"
 markupsafe = "==2.0.1"
 flask-migrate = "==2.7.0"
+argcomplete = "==2.0.0"
+django-cors-headers = "*"
 
 [dev-packages]
 
