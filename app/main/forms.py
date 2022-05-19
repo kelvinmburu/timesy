@@ -11,3 +11,7 @@ class ReminderForm(FlaskForm):
 
     emails = TextAreaField(label='',validators=[InputRequired()], render_kw={"placeholder": "Add email"})
     submit = SubmitField('Submit')
+    
+class UpdateProfile(FlaskForm):
+    bio =TextAreaField('Tell us about yourself', validators=[])
+    submit = SubmitField('Submit')  

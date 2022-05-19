@@ -9,6 +9,44 @@ from .forms import *
 from app.requests import get_quote
 
 #views
+
+@main.route('/login')
+def index():
+      return render_template('index.html')
+    
+@main.route('/user')
+@login_required
+def user():
+    username = current_user.username
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        abort(404)
+    return render_template('profile/profile.html', user=user)
+
+@main.route('/user/<name>/update_profile', methods=['POST', 'GET'])
+@login_required
+def update_profile(name):
+    form = UpdateProfile()
+    user = User.query.filter_by(username=name).first()
+    if user is None:
+        abort(404)
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+        user.save()
+        return redirect(url_for('.user', name=user.username))
+    return render_template('profile/update_profile.html', form=form)
+
+@main.route('/user/<name>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(name):
+    user = User.query.filter_by(username = name).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.user',name=name))
+
 @main.route('/tasks', methods = ['POST','GET'])
 def tasks():
   '''
@@ -47,7 +85,7 @@ def update_task(task_id):
     task = Task.query.get(task_id)
     if task.user != current_user:
         abort(403)
-    form = taskForm()
+    form = TaskForm()
     if form.validate_on_submit():
         task.title = form.title.data
         task.description = form.description.data
@@ -66,5 +104,3 @@ def update_task(task_id):
 def reminders():
 
   return redirect(url_for('main.tasks'))
-
-  return render_template('tasks.html')
