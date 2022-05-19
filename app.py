@@ -4,7 +4,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
-#from flask_bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
