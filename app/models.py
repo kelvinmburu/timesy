@@ -1,5 +1,6 @@
 from . import db
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
 from datetime import datetime
 
@@ -80,3 +81,34 @@ class Reminder(db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('tasks.id'))
+
+    def save_reminder(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_reminder(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def get_reminders(cls,id):
+        reminders = Reminder.query.filter_by(id=id).all()
+        return reminders
+
+    def __repr__(self):
+        return f'reminder:{self.reminder}'
+
+class Role(db.Model):
+    """
+    Create a Role table
+    """
+
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(60), unique=True)
+    description = db.Column(db.String(200))
+    user = db.relationship('User', backref='role',lazy='dynamic')
+
+    def __repr__(self):
+        return '<Role: {}>'.format(self.name)
