@@ -21,18 +21,17 @@
 </div>
 
 {% if tasks %}
-<h1 class="text-capitalize text-center">To do ...</h3>
+<h3 class="text-capitalize text-center"> Items Due</h3>
 <div class="container-fluid text-center">
   <div class="card-columns row d-flex justify-content-center">
   {% for task in tasks %}
     <div class="card col-2">
-      <h1>Hey</h1>
-      <h4 class="card-title">{{task.taskitem}}</h4>
+      <h6 class="card-title">{{task.id}}</h6>
       <div class="card-body">
-        <h5 class="card-title">{{task.taskitem}}</h5>
+        <h5 class="card-text">{{task.taskitem}}</h5>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Task date:{{task.time}}</small>
+        <small class="text-muted">Task date:{{task.time.strftime('%d-%m-%Y')}}</small>
         <br>
       </div>
     </div>
