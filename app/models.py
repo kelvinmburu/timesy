@@ -10,7 +10,7 @@ def load_user(user_id):
 
 
 #User Class
-class User(UserMixin,db.Model):
+class User(db.Model,UserMixin):
     __tablename__ = 'users'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +49,9 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
     
     
+
+# Other classes here
+
 # Task Class
 class Task(db.Model):
     __tablename__ = 'tasks'

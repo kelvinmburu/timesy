@@ -3,7 +3,7 @@ from wtforms import StringField,TextAreaField,SubmitField, SelectField
 from wtforms.validators import InputRequired
 
 class TaskForm(FlaskForm):
-
+    
     task = TextAreaField(label='',validators=[InputRequired()], render_kw={"placeholder": "Add Task"})
     submit = SubmitField('Submit')
 

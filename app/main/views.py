@@ -67,3 +67,4 @@ def reminders():
 
   return redirect(url_for('main.tasks'))
 
+  return render_template('tasks.html')
