@@ -1,7 +1,9 @@
-from flask import render_template
+from flask import render_template, request, abort, redirect, flash, url_for
 from . import main
-from flask_login import current_user
+from .. import db, photos
+from flask_login import current_user, login_required
 from ..models import User
+from .forms import UpdateProfile
 
 
 #views
@@ -53,7 +55,7 @@ def tasks():
   view tasks page that allows a user to add tasks
   '''
 
-    return render_template('tasks.html')
+  return render_template('tasks.html')
 
 @main.route('/tasks/reminder')
 def tasks():
@@ -61,7 +63,7 @@ def tasks():
   view tasks page that allows a user to add a reminder
   '''
 
-    return render_template('tasks.html')
+  return render_template('tasks.html')
 
 @main.route('/tasks/reminder/send')
 def tasks():
@@ -69,4 +71,4 @@ def tasks():
   view tasks page that allows a user to send reminders
   '''
 
-    return render_template('tasks.html')
+  return render_template('tasks.html')
