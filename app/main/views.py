@@ -70,3 +70,23 @@ def delete_task(task_id):
     flash("You have deleted your task succesfully!")
     return redirect(url_for('main.tasks'))
 
+@main.route('/tasks/<task_id>/update', methods = ['GET','POST'])
+@login_required
+def updatetask(task_id):
+    task = task.query.get(task_id)
+    if task.user != current_user:
+        abort(403)
+    form = taskForm()
+    if form.validate_on_submit():
+        task.title = form.title.data
+        task.description = form.description.data
+        task.task = form.task.data
+        db.session.commit()
+        flash("You have updated your task!")
+        return redirect(url_for('main.tasks',id = task.id)) 
+
+    if request.method == 'GET':
+        form.title.data = task.title
+        form.description.data = task.description
+        form.task.data = task.task
+    return render_template('tasks.html', form = form)
