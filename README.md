@@ -1,7 +1,7 @@
 # Timesy
 This is a Flask application that acts as a to-do app where a user can create and share their tasks and receive reminders when tasks are due.
 
-<!-- ![Site Screenshot](flaskblog/static/profile_pics/Flask-Blog.png) -->
+![Site Screenshot](app/static/assets/Timesy.png)
 
 ## Project Run-Through
 * A few details about this project:
